@@ -1,3 +1,17 @@
+# #Countries Infomation App
+> An App to help find basic information about any country in the World
+
+This is a react nodejs web application providing basic information about countries in the world
+
+# #Features
+>1. Search for countries by typing few words contain in the country's name
+>2. List only the matching countries names if it finds 10 or less country names match
+>3. Seach results containing more than 10 country name matches are not display but message is displayed telling user to specify another filter due to too many matches
+>4. Country name, capital city, land area, languages spoken, country flag are displayed when search results contain only one matching country name
+
+# #Dependency
+The Country Info App relies on the API  https://studies.cs.helsinki.fi/restcountries/api/all for the master list of countries 
+ 
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
