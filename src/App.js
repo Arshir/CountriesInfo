@@ -3,6 +3,8 @@ import countryService from "./services/country"
 import ShowMessage from "./ShowMessage"
 import DisplayList from "./DisplayList"
 import ShowDetail from "./Detail";
+import allWorldFlags from "../src/images/all-flags-world-official.jpg"
+import DisplayPageLinks from "./DisplayPageLinks";
 
 const App=()=>{
 
@@ -11,13 +13,14 @@ const App=()=>{
  const [countries,setCountries]= useState([])
  //const [message,setMessage]= useState(<div style={{color:'red',borderStyle:'solid',borderColor:'red'}}>
  //No  matches. Specify another filter</div>)
+ const [pageNo,setPageNo]= useState(1)
  const [search,setSearch]= useState('')
 let message = <div style={{color:'red',borderStyle:'solid',borderColor:'red'}}>
 No  matches. Specify another filter</div>
   
 
   useEffect( ()=>{
-    
+    console.log("calling useEffect")
     const loadData= async ()=>{ 
       console.log('data loading')
       //let isToExecute=true;
@@ -37,7 +40,8 @@ No  matches. Specify another filter</div>
   } ,[]);
 
 
-  let   countryNames =[]
+
+  let   countryNames =[],  pageSize=10, pages =[], countryNamesParts=[]
   if(search)
   {
     console.log('type search term', search)
@@ -45,15 +49,24 @@ No  matches. Specify another filter</div>
     let count= filterCountries.length
      console.log('filtered countries',filterCountries)
    
-    if (count>10)
+    if (count>500)
    
       message=<div style={{color:'red',borderStyle:'solid',borderColor:'red'}}>
       Too many matches . Please specify another filter</div>
     else if(count>1)
       {
+       
          countryNames = filterCountries.map(c=> c.name.common)
          console.log('Country names',countryNames)
          message =''
+         let navlength = Math.ceil(countryNames.length/pageSize)
+         pages =  [...Array(navlength).keys()].map(i => i + 1);
+
+         countryNamesParts=pages.map(p=> countryNames.slice(p*pageSize -pageSize,p*pageSize))
+       
+
+         console.log('country parts',countryNamesParts)
+
       }
        
 
@@ -80,10 +93,14 @@ No  matches. Specify another filter</div>
 
 
      return (
-        <div>
-          <input name='search' value={search} onChange={(event)=>{ event.preventDefault(); setSearch(event.target.value)}}/>
+        <div align='Center' width='20%'>
+         <div><img src={allWorldFlags} alt='world countries flag'/></div> 
+          
+         Type Full or Part of Name of Country:<input 
+ name='search' value={search} onChange={(event)=>{ event.preventDefault(); setSearch(event.target.value)}}/>
           <ShowMessage message={message} />
-          <DisplayList list={countryNames} showDetail={setSearch}  />
+          <DisplayList list={countryNamesParts[pageNo-1]} showDetail={setSearch}  />
+          <DisplayPageLinks pageList={pages} showPage={setPageNo}  />
           <ShowDetail country={country} />
         </div>
      )

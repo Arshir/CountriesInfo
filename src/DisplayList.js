@@ -1,5 +1,5 @@
 const DisplayList= ({list,showDetail})=>{
-   if(list.length<=0)
+   if(!list )
      return
     else{
         return(
