@@ -1,13 +1,15 @@
 const ShowDetail=({country})=>{
-  if(!country.name)
+  if(!country)
     return
-  console.log('showing details')
-  let languages=[];
+  console.log('showing details',country)
+  let languages=[]; let temp,windspeed =''
+  temp= country.temp; windspeed = country.wind_speed;
+  console.log('temperature,wind speed',temp,windspeed)
+
   Object.keys(country.languages).forEach(key=>{
-    console.log('languages',country.languages["ara"]);
+    //console.log('languages',country.languages["ara"]);
     languages.push(country.languages[key])
   }
-   
   )
   return (
   <div>
@@ -23,7 +25,18 @@ const ShowDetail=({country})=>{
           {languages.map(l=><li>{l}</li>)}
        </ul>
 
-    <img src={country.flag} alt="country flag" height={50} width={50} />
+    <p><img src={country.flag} alt="country flag" height={50} width={50} /></p>
+
+    <h3><em>Weather in {country.capital[0]}</em></h3>
+
+    <p>temperature {temp}</p>
+
+    {/* <p><img src={country.weatherIcon} alt="weather icon" height={50} width={50} /></p> */}
+
+    <p>wind {windspeed} m/s</p>
+
+
+
 
 </div>
   )
