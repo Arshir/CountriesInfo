@@ -5,9 +5,8 @@ This is a react nodejs web application providing basic information about countri
 
 # #Features
 >1. Search for countries by typing few words contain in the country's name
->2. List only the matching countries names if it finds 10 or less country names match
->3. Seach results containing more than 10 country name matches are not display but message is displayed telling user to specify another filter due to too many matches
->4. Country name, capital city, land area, languages spoken, country flag are displayed when search results contain only one matching country name
+>2. Display paginate search result list of country names if it finds 10 or more country names match with button to show detail per country
+>3. Country name, capital city, land area, languages spoken, country flag are displayed when search results contain only one matching country name
 
 # #Dependency
 The Country Info App relies on the API  https://studies.cs.helsinki.fi/restcountries/api/all for the master list of countries 
@@ -76,6 +75,7 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/m
 This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
 
 ### Deployment
+The app has been deployed to this url :https://arshir.github.io/CountriesInfo/.
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
 
